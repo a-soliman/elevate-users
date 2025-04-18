@@ -1,8 +1,8 @@
 import './App.css';
+import HomePage from './pages/Home';
 
 function App() {
-
-  return <h2>Elevate users init.</h2>;
+  return <HomePage />;
 }
 
 export default App;
