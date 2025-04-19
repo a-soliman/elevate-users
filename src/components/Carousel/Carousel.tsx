@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useUserContext } from '../../contexts/UserContext';
 import { CarouselController, Direction } from './CarouselController';
 import { CarouselItem } from './CarouselItem';
@@ -10,7 +10,55 @@ export function Carousel() {
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  const handleControllerClick = (direction: Direction) => {
+  useEffect(() => {
+    let deltaSum = 0;
+    const scrollLock = { locked: false };
+
+    // This function makes sure that we scroll smoothly
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (scrollLock.locked) return;
+
+      const scrollAmount = e.deltaY !== 0 ? e.deltaY : -e.deltaX;
+      deltaSum += scrollAmount;
+
+      const threshold = 40;
+
+      if (deltaSum > threshold) {
+        handleControllerClick(Direction.Right);
+        lockScroll();
+      } else if (deltaSum < -threshold) {
+        handleControllerClick(Direction.Left);
+        lockScroll();
+      }
+    };
+
+    const lockScroll = () => {
+      scrollLock.locked = true;
+      deltaSum = 0;
+      setTimeout(() => {
+        scrollLock.locked = false;
+      }, 300);
+    };
+
+    // now we bind the event
+    const carousel = carouselRef.current;
+    if (carousel) {
+      carousel.addEventListener('wheel', handleWheel, { passive: false });
+    }
+
+    // and clean up
+    return () => {
+      if (carousel) {
+        carousel.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, [handleControllerClick]);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  function handleControllerClick(direction: Direction) {
     let newActiveIndex = activeIdx;
     if (direction === Direction.Left) {
       newActiveIndex--;
@@ -21,7 +69,7 @@ export function Carousel() {
     }
     shouldScroll(newActiveIndex);
     setActiveIdx(newActiveIndex);
-  };
+  }
 
   const shouldScroll = (index: number) => {
     const activeItem = document.getElementById(`${index.toString()}`);

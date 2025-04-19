@@ -6,14 +6,12 @@
 .carousel-item .stats {
   opacity: 0;
   transition: opacity 1000ms;
+  padding: 10px;
 }
 
 .carousel-item.active .permanent-content {
-  /* border: 6px solid green; */
   transform: scale(1.1) 300;
 }
-
-
 
 .carousel-item.active .stats {
   opacity: 100;
@@ -30,6 +28,3 @@
   font-size: 24px;
 }
 
-.carousel-item .stats {
-  padding: 10px;
-}

@@ -19,7 +19,15 @@ export function CarouselItem({ user, active }: Props) {
         <div className="name">{getFullName(user)}</div>
       </div>
 
-      <div className="stats">{active && <UserProgress user={user} />}</div>
+      <div className="stats">
+        {active && (
+          <>
+            <p>{user.stats.current_streak_in_days}-day Streak</p>
+            <p>{user.stats.total_sessions_played} Sessions</p>
+            <UserProgress user={user} />
+          </>
+        )}
+      </div>
     </div>
   );
 }
