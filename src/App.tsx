@@ -3,6 +3,7 @@ import './App.css';
 import HomePage from './pages/Home';
 import UserPage from './pages/User';
 import { UserProvider } from './contexts/UserContext';
+import CarouselPage from './pages/Carousel';
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="user/:id" element={<UserPage />} />
+          <Route path="/user/:id" element={<UserPage />} />
+          <Route path="/carousel" element={<CarouselPage />} />
         </Routes>
       </main>
     </UserProvider>
