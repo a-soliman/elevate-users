@@ -1,6 +1,8 @@
-.user-list-item {
+/* The React link tag */
+.user-list-item a {
   display: flex;
   margin-bottom: 24px;
+  text-decoration: none;
 }
 
 .fullname-wrapper {
