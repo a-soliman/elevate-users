@@ -1,6 +1,11 @@
 import { useParams } from 'react-router-dom';
+import { useUserContext } from '../contexts/UserContext';
+import { UserDetails } from '../components/UserDetails';
 
 export default function UserPage() {
-  // const { id } = useParams();
-  return <div>User page </div>;
+  const { getUser } = useUserContext();
+  const { id = '100' } = useParams();
+
+  const user = getUser(parseInt(id));
+  return <UserDetails user={user} />;
 }

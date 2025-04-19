@@ -5,16 +5,15 @@
   text-decoration: none;
 }
 
-.fullname-wrapper {
+.user-list-item .fullname-wrapper {
   display: flex;
   align-items: center;
 }
 
-.profile-image-wrapper {
+.user-list-item .profile-image-wrapper {
   margin-right: 20px;
 }
 
-.profile-image {
+.user-list-item .profile-image {
   height: 80px;
-  border-radius: 50%;
 }

@@ -5,10 +5,10 @@ export interface IUser {
   first_name: string;
   last_name: string;
   image: string;
-  status: IUserStatus;
+  stats: IUserStats;
 }
 
-export interface IUserStatus {
+export interface IUserStats {
   current_streak_in_days: number;
   skills: IUserSkills;
   total_sessions_played: number;
@@ -21,7 +21,7 @@ export interface IUserSkills {
   writing: IUserSkillItem;
 }
 
-interface IUserSkillItem {
+export interface IUserSkillItem {
   current: number;
   level: number;
   max: number;

@@ -8,9 +8,18 @@ interface UserContextProps {
   usersList: IUser[];
   pending: boolean;
   error: string;
+  getUser: (id: ID) => IUser;
 }
 
-const defaultContextValue: UserContextProps = { users: {}, usersList: [], pending: false, error: '' };
+const defaultContextValue: UserContextProps = {
+  users: {},
+  usersList: [],
+  pending: false,
+  error: '',
+  getUser: (id: ID) => {
+    return {} as IUser;
+  },
+};
 
 const UserContext = createContext<UserContextProps>(defaultContextValue);
 
@@ -37,9 +46,7 @@ export const UserProvider = ({ children }: ProviderProps) => {
       try {
         const userIds = await apiService.getUsers();
         const resultHash: Record<ID, IUser> = {};
-        logger.log({ userIds });
         await populateAllUsers(userIds, resultHash);
-        console.log({ resultHash });
         setUsers(resultHash);
       } catch (err) {
         logger.error(`Error while running getUsers(), err = `, err);
@@ -63,11 +70,16 @@ export const UserProvider = ({ children }: ProviderProps) => {
     return Object.values(users);
   };
 
+  const getUser = (id: ID): IUser => {
+    return users[id];
+  };
+
   const contextValue: UserContextProps = {
     users,
     pending,
     error,
     usersList: usersList(),
+    getUser,
   };
 
   return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;

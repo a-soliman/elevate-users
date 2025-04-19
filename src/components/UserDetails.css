@@ -1,0 +1,23 @@
+.row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.profile-image-wrapper {
+  margin-right: 38px;
+}
+
+.profile-image {
+  height: 200px;
+}
+
+.details-wrapper > * {
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.details-wrapper .name {
+  margin-bottom: 24px;
+  font-size: 46px;
+}

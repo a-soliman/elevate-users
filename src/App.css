@@ -1,3 +1,8 @@
-h2 {
-  
+main {
+  max-width: 1200px;
+  margin: auto;
+  background-color: #0c0c0c;
+  padding: 24px;
+  border-radius: 15px;
+  padding-bottom: 78px;
 }
