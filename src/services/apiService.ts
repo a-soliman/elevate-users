@@ -1,5 +1,5 @@
 import { ID, IUser } from '../data/types/user';
-import { makeLoggerWithContext } from './logger';
+import { makeLoggerWithContext } from './loggerService';
 
 type UserIds = ID[];
 interface IBaseResponse {

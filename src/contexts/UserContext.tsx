@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { ID, IUser } from '../data/types/user';
-import logger from '../services/logger';
-import { apiService } from '../services/api';
+import logger from '../services/loggerService';
+import { apiService } from '../services/apiService';
 
 interface UserContextProps {
   users: Record<ID, IUser>;

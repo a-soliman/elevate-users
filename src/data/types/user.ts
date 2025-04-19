@@ -23,6 +23,6 @@ export interface IUserSkills {
 
 export interface IUserSkillItem {
   current: number;
-  level: number;
+  level: string;
   max: number;
 }
