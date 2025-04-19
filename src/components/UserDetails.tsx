@@ -1,19 +1,12 @@
-import { IUser, IUserSkillItem } from '../data/types/user';
+import { IUser } from '../data/types/user';
 import { getFullName, getProfilePictureValue } from '../utils/userUtils';
-import { AnimatedSkillBar } from './AnimatedSkillBar';
+import { UserProgress } from './UserProgress';
 import './UserDetails.css';
 
 interface Props {
   user: IUser;
 }
 export function UserDetails({ user }: Props) {
-  const stats: Record<string, IUserSkillItem> = {
-    math: user.stats.skills.math,
-    reading: user.stats.skills.reading,
-    speaking: user.stats.skills.speaking,
-    writing: user.stats.skills.writing,
-  };
-
   return (
     <section className="user-details">
       <div className="row">
@@ -26,11 +19,7 @@ export function UserDetails({ user }: Props) {
           <div>{user.stats.total_sessions_played} Sessions</div>
         </div>
       </div>
-      <div className="progress">
-        {Object.entries(stats).map(([key, value]) => (
-          <AnimatedSkillBar key={key} title={key} state={value} />
-        ))}
-      </div>
+      <UserProgress user={user} />
     </section>
   );
 }

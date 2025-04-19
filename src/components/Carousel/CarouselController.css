@@ -1,0 +1,11 @@
+.carousel-controller {
+  height: 100px;
+}
+
+.carousel-controller.LEFT {
+  margin-right: 20px;
+}
+
+.carousel-controller.RIGHT {
+  margin-left: 20px;
+}

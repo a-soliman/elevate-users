@@ -1,4 +1,4 @@
-import { IUser } from '../data/types/user';
+import { IUser, IUserSkillItem } from '../data/types/user';
 
 export const getProfilePictureValue = (user: IUser) => {
   if (!user.image) {
@@ -9,4 +9,14 @@ export const getProfilePictureValue = (user: IUser) => {
 
 export const getFullName = (user: IUser) => {
   return `${user.first_name || 'UNKNOWN'} ${user.first_name || 'UNKNOWN'}`;
+};
+
+export const getStats = (user: IUser) => {
+  const stats: Record<string, IUserSkillItem> = {
+    math: user.stats.skills.math,
+    reading: user.stats.skills.reading,
+    speaking: user.stats.skills.speaking,
+    writing: user.stats.skills.writing,
+  };
+  return stats;
 };

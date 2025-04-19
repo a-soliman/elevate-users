@@ -1,0 +1,13 @@
+.carousel {
+  overflow: hidden;
+  height: 610px;
+  display: flex;
+  align-items: center;
+}
+
+.carousel .items-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
